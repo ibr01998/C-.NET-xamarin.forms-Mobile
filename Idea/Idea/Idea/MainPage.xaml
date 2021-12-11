@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Idea"
+             x:Class="Idea.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:IdeaListViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="12" CornerRadius="0">
+            <Label Text="Idea!?" HorizontalTextAlignment="Center" TextColor="White" FontSize="24" FontAttributes="Bold"/>
+        </Frame>
+
+        <Entry x:Name="IdeaInput"  Placeholder="Whats Your idea?" Text="{Binding newIdea}" ReturnCommand="{Binding AddIdeaCommand}"></Entry>
+
+        <ListView x:Name="IdeaList" ItemsSource="{Binding IdeaItems}" Margin="8">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame BackgroundColor="#2196F3" Margin="8" Padding="0" CornerRadius="10" >
+                            <StackLayout>
+                                <Label Text="{Binding IdeaText}"  TextColor="White" FontSize="18" FontAttributes="Bold"></Label>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>
