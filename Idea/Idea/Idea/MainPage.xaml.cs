@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using System.Windows.Input;
 
 namespace Idea
 {
@@ -13,7 +14,10 @@ namespace Idea
         public MainPage()
         {
             InitializeComponent();
-        }
 
+            //disables Highlight
+            
+
+        }
     }
 }

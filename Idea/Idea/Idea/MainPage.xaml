@@ -8,25 +8,41 @@
         <local:IdeaListViewModel/>
     </ContentPage.BindingContext>
     <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="12" CornerRadius="0">
+        <Frame BackgroundColor="#2c3e50" Padding="12" CornerRadius="0">
             <Label Text="Idea!?" HorizontalTextAlignment="Center" TextColor="White" FontSize="24" FontAttributes="Bold"/>
         </Frame>
 
-        <Entry x:Name="IdeaInput"  Placeholder="Whats Your idea?" Text="{Binding newIdea}" ReturnCommand="{Binding AddIdeaCommand}"></Entry>
+        <Frame Padding="0" CornerRadius="10" Margin="6" WidthRequest="100" HeightRequest="100" HasShadow="False">
+            <Entry x:Name="IdeaInput" Placeholder="Whats Your idea?" Text="{Binding newIdea}" FontAttributes="Bold" FontSize="18" TextColor="#2c3e50" ReturnCommand="{Binding AddIdeaCommand}" HorizontalOptions="FillAndExpand"></Entry>
+        </Frame>
+        
 
-        <ListView x:Name="IdeaList" ItemsSource="{Binding IdeaItems}" Margin="8">
-            <ListView.ItemTemplate>
+
+
+        <CollectionView x:Name="IdeaList" ItemsSource="{Binding IdeaItems}" Margin="8">
+            <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <Frame BackgroundColor="#2196F3" Margin="8" Padding="0" CornerRadius="10" >
-                            <StackLayout>
-                                <Label Text="{Binding IdeaText}"  TextColor="White" FontSize="18" FontAttributes="Bold"></Label>
-                            </StackLayout>
+                    <StackLayout Margin="4">
+                        <Frame BackgroundColor="#2c3e50" CornerRadius="33" HasShadow="False" >
+                            <FlexLayout JustifyContent="SpaceBetween" AlignItems="Start">
+                                <Label Text="{Binding IdeaText}"  TextColor="White" FontSize="16" FontAttributes="Bold" WidthRequest="300"></Label>
+                                
+                                <StackLayout>
+                                    <Label Text="&#8657;" FontSize="34" TextColor="White" HorizontalOptions="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.UpCommand, Source={x:Reference IdeaList}}" CommandParameter="{Binding .}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label Text="{Binding UpVode}" HorizontalOptions="Center" FontSize="28" TextColor="White"></Label>
+                                    <Label Text="&#8659;" FontSize="34" TextColor="Wheat" HorizontalOptions="Center"></Label>
+                                </StackLayout>
+                            </FlexLayout>
                         </Frame>
-                    </ViewCell>
+                    </StackLayout>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
     </StackLayout>
 
 </ContentPage>

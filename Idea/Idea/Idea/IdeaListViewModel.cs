@@ -29,6 +29,24 @@ namespace Idea
         {
             IdeaItems.Add(new IdeaItem(newIdea, 0, 0));
         }
+
+        public ICommand UpCommand => new Command(Up);
+
+        void Up(object o) 
+        {
+            IdeaItem ideaUpVote = o as IdeaItem;
+            for(int i = 0; i < IdeaItems.Count; i++)
+            {
+                if (IdeaItems[i].IdeaText == ideaUpVote.IdeaText)
+                {
+                    IdeaItems[i].UpVode = IdeaItems[i].UpVode + 1;
+                    Console.WriteLine(IdeaItems[i].UpVode);
+                    Console.WriteLine(IdeaItems[i].IdeaText);                
+                }
+
+            }
+            Console.WriteLine(ideaUpVote);
+        }
         
     }
 }
