@@ -8,8 +8,13 @@
         <local:IdeaListViewModel/>
     </ContentPage.BindingContext>
     <StackLayout>
-        <Frame BackgroundColor="#2c3e50" Padding="12" CornerRadius="0">
-            <Label Text="Idea!?" HorizontalTextAlignment="Center" TextColor="White" FontSize="24" FontAttributes="Bold"/>
+        <Frame BackgroundColor="#2c3e50" Padding="6" CornerRadius="0">
+            <StackLayout>
+                <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+                    <Label Text="Home" HorizontalTextAlignment="Center" TextColor="White" FontSize="20" FontAttributes="Bold"/>
+                    <Button Text="?" TextColor="White" BackgroundColor="Wheat" Scale="0.8" FontSize="25" FontAttributes="Bold" HorizontalOptions="End" Clicked="Button_Clicked"/>
+                </FlexLayout>
+            </StackLayout>
         </Frame>
 
         <Frame Padding="0" CornerRadius="10" Margin="6" WidthRequest="100" HeightRequest="100" HasShadow="False">
@@ -25,7 +30,7 @@
                     <StackLayout Margin="4">
                         <Frame BackgroundColor="#2c3e50" CornerRadius="33" HasShadow="False" >
                             <FlexLayout JustifyContent="SpaceBetween" AlignItems="Start">
-                                <Label Text="{Binding IdeaText}"  TextColor="White" FontSize="16" FontAttributes="Bold" WidthRequest="300"></Label>
+                                <Label Text="{Binding ideaText}"  TextColor="White" FontSize="16" FontAttributes="Bold" WidthRequest="300"></Label>
                                 
                                 <StackLayout>
                                     <Label Text="&#8657;" FontSize="34" TextColor="White" HorizontalOptions="Center">
@@ -33,7 +38,7 @@
                                             <TapGestureRecognizer Command="{Binding Path=BindingContext.UpCommand, Source={x:Reference IdeaList}}" CommandParameter="{Binding .}" />
                                         </Label.GestureRecognizers>
                                     </Label>
-                                    <Label Text="{Binding UpVode}" HorizontalOptions="Center" FontSize="28" TextColor="White"></Label>
+                                    <Label Text="{Binding upVote}" HorizontalOptions="Center" FontSize="28" TextColor="White"></Label>
                                     <Label Text="&#8659;" FontSize="34" TextColor="Wheat" HorizontalOptions="Center"></Label>
                                 </StackLayout>
                             </FlexLayout>

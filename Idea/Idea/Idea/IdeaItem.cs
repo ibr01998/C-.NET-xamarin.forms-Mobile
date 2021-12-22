@@ -6,15 +6,16 @@ namespace Idea
 {
     internal class IdeaItem
     {
-        public string IdeaText { get; set; }
-        public Int32 UpVode { get; set; }
-        public Int32 DownVode { get; set; }
+        public string id { get; set; }
+        public string ideaText { get; set; }
+        public Int32 upVote { get; set; }
+        public Int32 downVote { get; set; }
 
-        public IdeaItem(string Text, Int32 UpVode, Int32 DownVode)
+        public IdeaItem(string Text, Int32 UpVote, Int32 DownVote)
         {
-            this.IdeaText = Text;
-            this.UpVode = UpVode;
-            this.DownVode = DownVode;
+            this.ideaText = Text;
+            this.upVote = UpVote;
+            this.downVote = DownVote;
         }
     }
 }

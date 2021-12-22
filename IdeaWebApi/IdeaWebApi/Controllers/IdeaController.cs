@@ -30,7 +30,7 @@ namespace IdeaWebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddIdea([FromForm] Idea newIdea)
+        public async Task<ActionResult> AddIdea([FromForm] Idea newIdea)
         {
             dataContext.ideas.Add(newIdea);
             await dataContext.SaveChangesAsync();
@@ -47,7 +47,7 @@ namespace IdeaWebApi.Controllers
 
             idea.IdeaText = updateIdea.IdeaText;
             idea.UpVote = updateIdea.UpVote;
-            idea.downVote = updateIdea.downVote;
+            idea.DownVote = updateIdea.DownVote;
 
             await dataContext.SaveChangesAsync();
 

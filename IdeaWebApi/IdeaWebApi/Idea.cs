@@ -6,7 +6,7 @@
 
         public string IdeaText { get; set; } = string.Empty;
         public int UpVote { get; set; }
-        public int downVote { get; set; }
+        public int DownVote { get; set; }
 
     }
 }

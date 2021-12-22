@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Idea.AboutPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#2c3e50" Padding="6" CornerRadius="0">
+                <StackLayout>
+                    <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+                        <Label Text="About" HorizontalTextAlignment="Center" TextColor="White" FontSize="20" FontAttributes="Bold"/>
+                    </FlexLayout>
+                </StackLayout>
+            </Frame>
+
+            <Frame>
+                <StackLayout>
+                    <Label FontSize="24" HorizontalOptions="Center" Padding="6" TextColor="black" FontAttributes="Bold" Text="Share Your Idea with the world"></Label>
+                    <Label FontSize="18" HorizontalOptions="Center" Padding="0 30 0 30" TextColor="black" FontAttributes="Bold" Text="It's all very simple all you have to do is share your Idea on this platform!"></Label>
+                    <Label FontSize="18" HorizontalOptions="Center" Padding="0 30 0 30" TextColor="black" FontAttributes="Bold" Text="And the rest is up to the people they will ether upvote your idea if they like it or downvote if they dont"></Label>
+                </StackLayout>
+            </Frame>
+
+            <Frame>
+                <StackLayout>
+                    <Label FontSize="24" HorizontalOptions="Center" Padding="6" TextColor="black" FontAttributes="Bold" Text="Why did I make this app ?"></Label>
+                    <Label FontSize="18" HorizontalOptions="Center" Padding="0 30 0 30" TextColor="black" FontAttributes="Bold" Text="I found that is can be quite the hassle to really know whether or not your idea has any real world applications And I thought. what better way to validate my idea than the courte of public opinion! So here we are."></Label>
+                </StackLayout>
+            </Frame>
+            <Frame>
+                <StackLayout>
+                    <Label FontSize="24" HorizontalOptions="Center" Padding="6" TextColor="black" FontAttributes="Bold" Text="Last but not least"></Label>
+                    <Label FontSize="18" HorizontalOptions="Center" Padding="0 30 0 30" TextColor="black" FontAttributes="Bold" Text="We are not responsible for any stolen ideas."></Label>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

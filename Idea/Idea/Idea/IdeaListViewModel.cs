@@ -4,6 +4,9 @@ using System.Text;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Net.Http.Headers;
 
 namespace Idea
 {
@@ -16,37 +19,61 @@ namespace Idea
         {
             IdeaItems = new ObservableCollection<IdeaItem>();
 
-            IdeaItems.Add(new IdeaItem("idea 1 this is something im writhing down just to see how longer shit look on this app thank you for understanding you dick head", 0, 0));
-            IdeaItems.Add(new IdeaItem("idea 2", 10, 3));
-            IdeaItems.Add(new IdeaItem("idea 3", 30, 10));
-            IdeaItems.Add(new IdeaItem("idea 4", 50, 30));
+            getIdeas();
         }
 
 
         public ICommand AddIdeaCommand => new Command(AddIdeaItem);
         public string newIdea {get; set;}
-        void AddIdeaItem() 
+        async void getIdeas()
         {
-            IdeaItems.Add(new IdeaItem(newIdea, 0, 0));
+            var httpClient = new HttpClient();
+            
+
+            var resultJson = await httpClient.GetStringAsync("http://192.168.0.206:5168/api/idea");
+
+            var resultIdeas = JsonConvert.DeserializeObject<ObservableCollection<IdeaItem>>(resultJson);
+
+            Console.WriteLine(resultIdeas[0].ideaText);
+            IdeaItems.Clear();
+            foreach(var item in resultIdeas)
+            {
+                IdeaItems.Add(item);
+            }
+        }
+        async void AddIdeaItem() 
+        {
+            var httpClient = new HttpClient();
+            MultipartFormDataContent form = new MultipartFormDataContent();
+
+            form.Add(new StringContent(newIdea), "IdeaText");
+            form.Add(new StringContent("0"), "upVote");
+            form.Add(new StringContent("0"), "downVote");
+
+            var response = await httpClient.PostAsync("http://192.168.0.206:5168/api/idea", form);
+            getIdeas();
         }
 
         public ICommand UpCommand => new Command(Up);
 
-        void Up(object o) 
+        async void Up(object o) 
         {
             IdeaItem ideaUpVote = o as IdeaItem;
-            for(int i = 0; i < IdeaItems.Count; i++)
-            {
-                if (IdeaItems[i].IdeaText == ideaUpVote.IdeaText)
-                {
-                    IdeaItems[i].UpVode = IdeaItems[i].UpVode + 1;
-                    Console.WriteLine(IdeaItems[i].UpVode);
-                    Console.WriteLine(IdeaItems[i].IdeaText);                
-                }
+            var httpClient = new HttpClient();
+            MultipartFormDataContent form = new MultipartFormDataContent();
 
-            }
-            Console.WriteLine(ideaUpVote);
+            Console.WriteLine(ideaUpVote.id);
+
+            form.Add(new StringContent(ideaUpVote.id), "id");
+            form.Add(new StringContent(ideaUpVote.ideaText), "IdeaText");
+            form.Add(new StringContent((ideaUpVote.upVote + 1).ToString()), "upVote");
+            form.Add(new StringContent(ideaUpVote.downVote.ToString()), "downVote");
+
+            var response = await httpClient.PutAsync("http://192.168.0.206:5168/api/idea", form);
+
+            getIdeas();
+
         }
-        
+
     }
 }
